@@ -1,7 +1,7 @@
 name: "ProyectoInferencia"
 output_dir: "."
 navbar:
-  title: "Inferencia Estadística: Proyecto Final"
+  title: "Proyecto Final"
   left:
     - text: "Inicio"
       href: index.html
