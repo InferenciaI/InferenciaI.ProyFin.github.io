@@ -1,0 +1,13 @@
+name: "ProyectoInferencia"
+output_dir: "."
+navbar:
+  title: "Inferencia Estadística: Proyecto Final"
+  left:
+    - text: "Inicio"
+      href: index.html
+    - text: "Equipo"
+      href: about.html
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
