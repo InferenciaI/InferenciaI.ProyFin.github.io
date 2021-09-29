@@ -267,12 +267,38 @@ $(document).ready(function () {
 </div>
 
 
-<p>Let <span class="math inline">\(X_1,\dots, X_n \sim t_3\)</span> where <span class="math inline">\(n = 25\)</span>. Let <span class="math inline">\(\theta = T(F) = (q_{.75} − q_{.25})/1.34\)</span> where <span class="math inline">\(q_p\)</span> denotes the <span class="math inline">\(p\)</span> th quantile. Do a simulation to compare the coverage and length of the following conﬁdence intervals for <span class="math inline">\(\theta\)</span>:</p>
+<p>Let <span class="math inline">\(X_1,\dots, X_n \sim t_{(3)}\)</span> where <span class="math inline">\(n = 25\)</span>. Let <span class="math inline">\(\theta = T(F) = (q_{.75} − q_{.25})/1.34\)</span> where <span class="math inline">\(q_p\)</span> denotes the <span class="math inline">\(p\)</span> th quantile. Do a simulation to compare the coverage and length of the following conﬁdence intervals for <span class="math inline">\(\theta\)</span>:</p>
 <ol style="list-style-type: lower-roman">
 <li><p>Normal interval with standard error from the bootstrap.</p></li>
 <li><p>bootstrap percentile interval.</p></li>
 <li><p>pivotal bootstrap interval.</p></li>
 </ol>
+<p>Solución:</p>
+<p>Fijando la semilla 1, el estimador puntual fue 1.006827.</p>
+<p>Así fijando el número de simulaciones Bootstrap en B=10000; se obtuvieron los siguientes intervalos con <span class="math inline">\(\alpha = 5\%\)</span>:</p>
+<p>Intervalo normal = (0.6804892,1.333164). Largo = 0.6526748.</p>
+<p>Intervalo intercuantil Bootstrap = (0.6725537, 1.3004509). Largo = 0.6278972.</p>
+<p>Intervalo pivotal Bootstrap = (0.7132023, 1.341099). Largo = 0.6278972.</p>
+<p>Donde el estadístico “real” es 1.14163.</p>
+<p>Conclusiones:</p>
+<ol style="list-style-type: decimal">
+<li><p>El intervalo normal siempre va estar centrado en el estimador y en este caso particular fue más conservador por tener la mayor longitud.</p></li>
+<li><p>Los intervalos Boostrap tienen la misma longitud pero difieren en su centro (en general diferente del estimador puntual).</p></li>
+<li><p>Todos los intervalos contenen el valor real.</p></li>
+</ol>
+<p>Ahora evaluaremos la convergencia de los métodos sobre el número de simulaciones (B que corre de 2 a 10,000) con la misma semilla y por lo tanto, la misma muestra de tamaño 25.</p>
+<p>A continuación se muestran tres gráficas que muestran la convergencia de los intervalos al <span class="math inline">\(95\%\)</span> variando el número de simulaciones utilizadas.</p>
+<ul>
+<li>La linea roja representa el límite superior.</li>
+<li>La linea azul el límite interior.</li>
+<li>La lina negra el valor real.</li>
+</ul>
+<div class="figure">
+<img src="Normal2000.png" alt="" />
+<p class="caption">Intervalos con una aproximación normal</p>
+</div>
+<p><img src="Intercuartil2000.png" alt="Intervalos intercuantiles Bootstrap" /> <img src="Pivotal2000.png" alt="Intervalos pivotales Bootstrap" /> Conclusión:</p>
+<p>En este caso particular, toods los intervalos requisieron al rededor de 1500 simulaciones o más para converger, aunque cubrieron el parámetro de interes con relativa velocidad.</p>
 
 
 

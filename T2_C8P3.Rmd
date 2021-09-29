@@ -2,12 +2,52 @@
  title: "Pregunta 3 del capítulo 8."
 ---
 
-Let $X_1,\dots, X_n \sim t_3$ where $n = 25$. Let $\theta = T(F) = (q_{.75} − q_{.25})/1.34$ where $q_p$ denotes the $p$ th quantile. Do a simulation to compare the coverage and length of the following conﬁdence intervals for $\theta$:
+Let $X_1,\dots, X_n \sim t_{(3)}$ where $n = 25$. Let $\theta = T(F) = (q_{.75} − q_{.25})/1.34$ where $q_p$ denotes the $p$ th quantile. Do a simulation to compare the coverage and length of the following conﬁdence intervals for $\theta$:
 
 (i) Normal interval with standard error from the bootstrap.
 
 (ii) bootstrap percentile interval.
 
-
 (iii) pivotal bootstrap interval.
 
+Solución:
+
+Fijando la semilla 1, el estimador puntual fue 1.006827.
+
+
+Así fijando el número de simulaciones Bootstrap en B=10000; se obtuvieron los siguientes intervalos con $\alpha = 5\%$:
+
+Intervalo normal = (0.6804892,1.333164). Largo = 0.6526748.
+
+
+Intervalo intercuantil Bootstrap = (0.6725537, 1.3004509). Largo = 0.6278972.
+
+
+Intervalo pivotal Bootstrap = (0.7132023, 1.341099). Largo = 0.6278972.
+
+Donde el estadístico "real" es 1.14163.
+
+Conclusiones:
+
+
+1) El intervalo normal siempre va estar centrado en el estimador y en este caso particular fue más conservador por tener la mayor longitud.
+
+2) Los intervalos Boostrap tienen la misma longitud pero difieren en su centro (en general diferente del estimador puntual).
+
+3) Todos los intervalos contenen el valor real.
+
+Ahora evaluaremos la convergencia de los métodos sobre el número de simulaciones (B que corre de 2 a 10,000) con la misma semilla y por lo tanto, la misma muestra de tamaño 25.
+
+A continuación se muestran tres gráficas que muestran la convergencia de los intervalos al $95\%$ variando el número de simulaciones utilizadas.
+
+- La linea roja representa el límite superior.
+- La linea azul el límite interior.
+- La lina negra el valor real.
+
+![Intervalos con una aproximación normal](Normal2000.png)
+
+![Intervalos intercuantiles Bootstrap](Intercuartil2000.png)
+![Intervalos pivotales Bootstrap](Pivotal2000.png)
+Conclusión:
+
+En este caso particular, toods los intervalos requisieron al rededor de 1500 simulaciones o más para converger, aunque cubrieron el parámetro de interes con relativa velocidad.
