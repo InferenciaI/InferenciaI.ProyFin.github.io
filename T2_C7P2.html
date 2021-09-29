@@ -11,7 +11,7 @@
 
 
 
-<title>Tareas del Equipo</title>
+<title>Pregunta 2 del capítulo 7.</title>
 
 <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -262,14 +262,44 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Tareas del Equipo</h1>
+<h1 class="title toc-ignore">Pregunta 2 del capítulo 7.</h1>
 
 </div>
 
 
-<p>En esta sección podras encontrar las tareas del equipo.</p>
-<p>Tareita 2:</p>
-<p><strong><a href="https://inferenciai.github.io/InferenciaI.ProyFin.github.io/T2_C7P2.html">Capítulo 7 - P2</a></strong> <strong><a href="https://inferenciai.github.io/InferenciaI.ProyFin.github.io/T2_C7P3.html">Capítulo 7 - P3</a></strong> <strong><a href="https://www.google.com">Capítulo 7 - P4</a></strong> <strong><a href="https://inferenciai.github.io/InferenciaI.ProyFin.github.io/T2_C7P8.html">Capítulo 7 - P8</a></strong> <strong><a href="https://www.google.com">Capítulo 8 - P1</a></strong> <strong><a href="https://www.google.com">Capítulo 8 - P2</a></strong> <strong><a href="https://www.google.com">Capítulo 8 - P3</a></strong> <strong><a href="https://www.google.com">Capítulo 8 - P5</a></strong> <strong><a href="https://www.google.com">Capítulo 8 - P7</a></strong></p>
+<p>Let <span class="math inline">\(X_1, \dots , X_n \sim Bernoulli(p)\)</span> and let <span class="math inline">\(Y_1, \dots , Y_m \sim Bernoulli(q)\)</span>. Find the plug-in estimator and estimated standard error for <span class="math inline">\(p\)</span>. Find an approximate 90 percent conﬁdence interval for <span class="math inline">\(p\)</span>. Find the plug-in estimator and estimated standard error for <span class="math inline">\(p − q\)</span>. Find an approximate 90 percent conﬁdence interval for <span class="math inline">\(p − q\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>Find the plug-in estimator and estimated standard error for <span class="math inline">\(p\)</span>.</li>
+</ol>
+<p>Solución:</p>
+<p>Para encontrar el estimador plug-in hay que notar que <span class="math inline">\(\mathbb{E}(X) = p\)</span>. Y de acuerdo con lo que vimos en clase el operador <span class="math inline">\(\mathbb{E}\)</span> es lineal. Así:</p>
+<p><span class="math display">\[\widehat{p}_{plug-in} = \overline{X}\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Find an approximate 90 percent conﬁdence interval for <span class="math inline">\(p\)</span>.</li>
+</ol>
+<p>Como <span class="math inline">\(\mathbb{E}(X), Var(X) &lt; \infty\)</span> se puede aplicar el teorema del límite central:</p>
+<p><span class="math display">\[\frac{\overline{X} - p}{\sqrt{\frac{p(1-p)}{n}}} \to N(0,1)\]</span></p>
+<p>Así el intervalo para muestras grandes al <span class="math inline">\(90\%\)</span> es de la forma:</p>
+<p><span class="math display">\[(\overline{X} - Z_{0.05}*\sqrt{\frac{\overline{X}(1-\overline{X})}{n}},  \overline{X} + Z_{0.95}*\sqrt{\frac{\overline{X}(1-\overline{X})}{n}})\]</span></p>
+<p>Donde <span class="math inline">\(Z_{0.95} = -Z_{0.05} \thickapprox 1.644854\)</span>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Find the plug-in estimator and estimated standard error for <span class="math inline">\(p − q\)</span>.</li>
+</ol>
+<p>Propondemos la siguiente transformación: <span class="math inline">\(W = X - Y\)</span>.</p>
+<p>Mostraremos que <span class="math inline">\(\mathbb{E}(W) = p - q\)</span>.</p>
+<p><span class="math display">\[\mathbb{E}(W) = \mathbb{E}(X) - \mathbb{E}(Y) = p - q.\]</span></p>
+<p>Así el estimador plug-in es</p>
+<p><span class="math display">\[\widehat{p-q}_{plug-in} = \overline{W}\]</span></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Find an approximate 90 percent conﬁdence interval for <span class="math inline">\(p − q\)</span>.</li>
+</ol>
+<p>Usaremos una aproximación asintotica por el teorema del límite central.</p>
+<p>Primero necesitamos verificar que la varianza de <span class="math inline">\(Z\)</span> es finita.</p>
+<p><span class="math display">\[Var(W) = Var(X-Y) \overset{ind}{=} Var(X) + Var(Y) = p^2 + q^2.\]</span></p>
+<p>Así <span class="math inline">\(Var(\overline{W}) = \frac{p^2+q^2}{n}\)</span> por lo que <span class="math inline">\(W \overset{n \to \infty}{\sim} N(p-q,\frac{p^2+q^2}{n})\)</span>.</p>
+<p>Entonces el intervalo de confianza al <span class="math inline">\(90\%\)</span> utilizando estimadores plug-in es de la forma:</p>
+<p><span class="math display">\[(\overline{X} - Z_{0.05}*\sqrt{\frac{S^2_W}{n}},  \overline{X} + Z_{0.95}*\sqrt{\frac{S^2_W}{n}})\]</span></p>
+<p>Donde <span class="math inline">\(S^2_W = \frac{1}{n}\sum_{i = 1}^n (W_i - \overline{W})^2\)</span>.</p>
 
 
 

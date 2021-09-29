@@ -1,0 +1,9 @@
+---
+ title: "Pregunta 3 del capítulo 8."
+---
+
+#(Computer Experiment.)
+
+Get the data on eruption times and waiting times between eruptions of the Old Faithful geyser from the website. Estimate the mean waiting time and give a standard error for the estimate. Also, give a 90 percent conﬁdence interval for the mean waiting time. Now estimate the median waiting time. In the next chapter we will see how to get the standard error for the median.
+
+

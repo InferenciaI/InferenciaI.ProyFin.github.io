@@ -1,0 +1,13 @@
+---
+ title: "Pregunta 3 del capítulo 8."
+---
+
+Let $X_1,\dots, X_n \sim t_3$ where $n = 25$. Let $\theta = T(F) = (q_{.75} − q_{.25})/1.34$ where $q_p$ denotes the $p$ th quantile. Do a simulation to compare the coverage and length of the following conﬁdence intervals for $\theta$:
+
+(i) Normal interval with standard error from the bootstrap.
+
+(ii) bootstrap percentile interval.
+
+
+(iii) pivotal bootstrap interval.
+

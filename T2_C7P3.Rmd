@@ -1,0 +1,18 @@
+---
+ title: "Pregunta 3 del capítulo 7."
+---
+
+#(Computer Experiment.)
+
+Generate 100 observations from a $N(0,1)$ distribution. Compute a 95 percent conﬁdence band for the CDF $F$. Repeat this 1000 times and see how often the conﬁdence band contains the true distribution function. Repeat using data from a Cauchy distribution.
+
+
+1) Caso: $N(0,1)$. Solución: 
+
+![Distribución de una Normal(0,1)](DNormal01.png)
+
+
+2) Caso $Cauchy(0,1)$. Solución:
+
+
+![Distribución de una Cauchy(0,1)](Cauchy01.png)

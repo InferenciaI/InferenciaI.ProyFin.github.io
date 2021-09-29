@@ -5,15 +5,13 @@ En esta sección podras encontrar las tareas del equipo.
 
 Tareita 2:
 
-
-    **[Cap7 - P2](https://www.google.com)**
-    **[Cap7 - P3](https://www.google.com)**
-    **[Cap7 - P4](https://www.google.com)**
-    **[Cap7 - P8](https://www.google.com)**
-    **[Cap8 - P1](https://www.google.com)**
-    **[Cap8 - P2](https://www.google.com)**
-    **[Cap8 - P3](https://www.google.com)**
-    **[Cap8 - P5](https://www.google.com)**
-    **[Cap8 - P7](https://www.google.com)**
-    
+**[Capítulo 7 - P2](https://inferenciai.github.io/InferenciaI.ProyFin.github.io/T2_C7P2.html)**
+**[Capítulo 7 - P3](https://inferenciai.github.io/InferenciaI.ProyFin.github.io/T2_C7P3.html)**
+**[Capítulo 7 - P4](https://www.google.com)**
+**[Capítulo 7 - P8](https://inferenciai.github.io/InferenciaI.ProyFin.github.io/T2_C7P8.html)**
+**[Capítulo 8 - P1](https://www.google.com)**
+**[Capítulo 8 - P2](https://www.google.com)**
+**[Capítulo 8 - P3](https://www.google.com)**
+**[Capítulo 8 - P5](https://www.google.com)**
+**[Capítulo 8 - P7](https://www.google.com)**
     

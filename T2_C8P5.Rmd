@@ -1,0 +1,8 @@
+---
+ title: "Pregunta 5 del capítulo 8."
+---
+
+Let $X_1,\dots,X_n$ be distinct observations (no ties). Let $X_1^∗,\dots,X_n^∗$ denote a bootstrap sample and let $\overline{X_n^*} = n^{−1}\sum_{i=1}^nX_i^*$.
+
+Find: $E(\overline{X_n^*}|X_1,\dots,X_n)$, $V(\overline{X_n^*}|X_1,\dots,X_n)$, $E(\overline{X_n^*})$ and $V(\overline{X_n^*})$.
+

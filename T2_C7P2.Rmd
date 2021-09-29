@@ -1,0 +1,65 @@
+---
+ title: "Pregunta 2 del capítulo 7."
+---
+
+Let $X_1, \dots , X_n \sim Bernoulli(p)$ and let $Y_1, \dots , Y_m \sim Bernoulli(q)$. Find the plug-in estimator and estimated standard error for $p$. Find an approximate 90 percent conﬁdence interval for $p$. Find the plug-in estimator and estimated standard error for $p − q$. Find an approximate 90 percent conﬁdence interval for $p − q$.
+
+
+1) Find the plug-in estimator and estimated standard error for $p$.
+
+
+Solución: 
+
+Para encontrar el estimador plug-in hay que notar que $\mathbb{E}(X) = p$. Y de acuerdo con lo que vimos en clase el operador $\mathbb{E}$ es lineal. Así:
+
+\[\widehat{p}_{plug-in} = \overline{X}\]
+
+
+2) Find an approximate 90 percent conﬁdence interval for $p$.
+
+
+Como $\mathbb{E}(X), Var(X) < \infty$ se puede aplicar el teorema del límite central:
+
+\[\frac{\overline{X} - p}{\sqrt{\frac{p(1-p)}{n}}} \to N(0,1)\]
+
+Así el intervalo para muestras grandes al $90\%$ es de la forma:
+
+\[(\overline{X} - Z_{0.05}*\sqrt{\frac{\overline{X}(1-\overline{X})}{n}},  \overline{X} + Z_{0.95}*\sqrt{\frac{\overline{X}(1-\overline{X})}{n}})\]
+
+Donde $Z_{0.95} = -Z_{0.05} \thickapprox 1.644854$.
+
+
+3) Find the plug-in estimator and estimated standard error for $p − q$.
+
+
+Propondemos la siguiente transformación: $W = X - Y$.
+
+
+Mostraremos que $\mathbb{E}(W) = p - q$. 
+
+
+\[\mathbb{E}(W) = \mathbb{E}(X) - \mathbb{E}(Y) = p - q.\]
+
+Así el estimador plug-in es 
+
+\[\widehat{p-q}_{plug-in} = \overline{W}\]
+
+4) Find an approximate 90 percent conﬁdence interval for $p − q$.
+
+Usaremos una aproximación asintotica por el teorema del límite central. 
+
+Primero necesitamos verificar que la varianza de $Z$ es finita.
+
+\[Var(W) = Var(X-Y) \overset{ind}{=} Var(X) + Var(Y) = p^2 + q^2.\]
+
+
+Así $Var(\overline{W}) = \frac{p^2+q^2}{n}$ por lo que $W \overset{n \to \infty}{\sim} N(p-q,\frac{p^2+q^2}{n})$.
+
+Entonces el intervalo de confianza al $90\%$ utilizando estimadores plug-in es de la forma:
+
+\[(\overline{X} - Z_{0.05}*\sqrt{\frac{S^2_W}{n}},  \overline{X} + Z_{0.95}*\sqrt{\frac{S^2_W}{n}})\]
+
+Donde $S^2_W = \frac{1}{n}\sum_{i = 1}^n (W_i - \overline{W})^2$.
+
+
+
