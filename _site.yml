@@ -5,10 +5,11 @@ navbar:
   left:
     - text: "Inicio"
       href: index.html
-    - text: "Equipo"
-      href: about.html
     - text: "Tareas"
       href: tareas.html
+    - text: "Equipo"
+      href: about.html
+
 output:
   html_document:
     theme: cosmo
