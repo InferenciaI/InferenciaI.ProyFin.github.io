@@ -41,7 +41,7 @@ Así construimos el intervalo de confianza al $95\%$.
 #alfa del nivel de confianza
 alfa = 0.10
 #intervalo al 95% de confianza
-c(media + qnorm(alfa/2)*sqrt(varhat)/n, media + qnorm(1-alfa/2)*sqrt(varhat)/n)
+c(media + qnorm(alfa/2)*sqrt(varhat/n), media + qnorm(1-alfa/2)*sqrt(varhat/n))
 ````
 
 ----------------------------------------------------------------------------------------

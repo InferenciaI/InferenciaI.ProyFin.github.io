@@ -275,9 +275,64 @@ $(document).ready(function () {
 </ol>
 <p>Solución:</p>
 <p>Fijando la semilla 1, el estimador puntual fue 1.006827.</p>
-<p>Así fijando el número de simulaciones Bootstrap en B=10000; se obtuvieron los siguientes intervalos con <span class="math inline">\(\alpha = 5\%\)</span>:</p>
-<p>Intervalo normal = (0.6804892,1.333164). Largo = 0.6526748.</p>
+<pre class="r"><code>alfa = 0.05
+
+#Intervalo normal
+set.seed(1)
+n = 25
+(X = rt(n,df = 3))</code></pre>
+<pre><code>##  [1] -0.70272107 -0.56931957  0.68427662 -0.36200122 -0.21301035  0.69259147 -0.46139714
+##  [8] -0.01347150  0.77550093  0.80909970  0.05770896  2.03169376 -0.48438874  1.75419044
+## [15] -0.58343218  0.94299626 -0.32488856 -0.18208449  0.88775050  1.03988310 -1.21350331
+## [22]  1.14972860  0.70257551 -1.00156930  2.97099035</code></pre>
+<pre class="r"><code>cuantilesN = quantile(x = X, probs = c(0.25,0.75))
+(largo = (cuantilesN[2] - cuantilesN[1])/1.34)</code></pre>
+<pre><code>##      75% 
+## 1.006827</code></pre>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Así fijando el número de simulaciones Bootstrap en B=10000; se obtuvieron los siguientes intervalos con <span class="math inline">\(\alpha = 5\%\)</span>:</td>
+</tr>
+<tr class="even">
+<td>```r #Varianza Bootstrap B = 10000 TnB = sapply(1:B, function(b){ Xb = sample(X,n,replace = TRUE) cuantb = quantile(x = Xb, probs = c(0.25,0.75)) largoB = (cuantb[2] - cuantb[1])/1.34 return(largoB) })</td>
+</tr>
+<tr class="odd">
+<td>VarB = mean((TnB - mean(TnB))^2)</td>
+</tr>
+<tr class="even">
+<td>#Intervalo normal (InfN = largo - qnorm(1-alfa/2)*sqrt(VarB)) ```</td>
+</tr>
+<tr class="odd">
+<td><code>##       75% ## 0.6804892</code></td>
+</tr>
+<tr class="even">
+<td><code>r (SupN = largo + qnorm(1-alfa/2)*sqrt(VarB))</code></td>
+</tr>
+<tr class="odd">
+<td><code>##      75% ## 1.333164</code></td>
+</tr>
+<tr class="even">
+<td>Intervalo normal = (0.6804892,1.333164). Largo = 0.6526748.</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>#Intervalo de los cuantiles Bootstrap
+(IntervaloB = quantile(x = TnB, probs = c(alfa/2,1-alfa/2)))</code></pre>
+<pre><code>##      2.5%     97.5% 
+## 0.6725537 1.3004509</code></pre>
 <p>Intervalo intercuantil Bootstrap = (0.6725537, 1.3004509). Largo = 0.6278972.</p>
+<hr />
+<pre class="r"><code>#Intervalo del Bootstrap pivotal
+(InfBpiv = 2*largo - IntervaloB[2])</code></pre>
+<pre><code>##       75% 
+## 0.7132023</code></pre>
+<pre class="r"><code>(SupBpiv = 2*largo - IntervaloB[1])</code></pre>
+<pre><code>##      75% 
+## 1.341099</code></pre>
 <p>Intervalo pivotal Bootstrap = (0.7132023, 1.341099). Largo = 0.6278972.</p>
 <p>Donde el estadístico “real” es 1.14163.</p>
 <p>Conclusiones:</p>

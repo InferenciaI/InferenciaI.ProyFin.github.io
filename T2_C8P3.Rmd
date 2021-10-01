@@ -14,14 +14,55 @@ Solución:
 
 Fijando la semilla 1, el estimador puntual fue 1.006827.
 
+````{r include = TRUE}
+alfa = 0.05
 
+#Intervalo normal
+set.seed(1)
+n = 25
+(X = rt(n,df = 3))
+cuantilesN = quantile(x = X, probs = c(0.25,0.75))
+(largo = (cuantilesN[2] - cuantilesN[1])/1.34)
+````
+
+-----------------------------------------------------------------------------------------
 Así fijando el número de simulaciones Bootstrap en B=10000; se obtuvieron los siguientes intervalos con $\alpha = 5\%$:
 
+````{r include = TRUE}
+#Varianza Bootstrap
+B = 10000
+TnB = sapply(1:B, function(b){
+  Xb = sample(X,n,replace = TRUE)
+  cuantb = quantile(x = Xb, probs = c(0.25,0.75))
+  largoB = (cuantb[2] - cuantb[1])/1.34
+  return(largoB)
+})
+
+VarB = mean((TnB - mean(TnB))^2)
+
+#Intervalo normal
+(InfN = largo - qnorm(1-alfa/2)*sqrt(VarB))
+(SupN = largo + qnorm(1-alfa/2)*sqrt(VarB))
+````
+  
 Intervalo normal = (0.6804892,1.333164). Largo = 0.6526748.
 
+-----------------------------------------------------------------------------------------
+
+````{r include = TRUE}
+#Intervalo de los cuantiles Bootstrap
+(IntervaloB = quantile(x = TnB, probs = c(alfa/2,1-alfa/2)))
+````
 
 Intervalo intercuantil Bootstrap = (0.6725537, 1.3004509). Largo = 0.6278972.
 
+------------------------------------------------------------------------------------------
+
+````{r include = TRUE}
+#Intervalo del Bootstrap pivotal
+(InfBpiv = 2*largo - IntervaloB[2])
+(SupBpiv = 2*largo - IntervaloB[1])
+````
 
 Intervalo pivotal Bootstrap = (0.7132023, 1.341099). Largo = 0.6278972.
 
