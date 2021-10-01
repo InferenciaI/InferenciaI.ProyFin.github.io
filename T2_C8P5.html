@@ -268,7 +268,66 @@ $(document).ready(function () {
 
 
 <p>Let <span class="math inline">\(X_1,\dots,X_n\)</span> be distinct observations (no ties). Let <span class="math inline">\(X_1^∗,\dots,X_n^∗\)</span> denote a bootstrap sample and let <span class="math inline">\(\overline{X_n^*} = n^{−1}\sum_{i=1}^nX_i^*\)</span>.</p>
-<p>Find: <span class="math inline">\(E(\overline{X_n^*}|X_1,\dots,X_n)\)</span>, <span class="math inline">\(V(\overline{X_n^*}|X_1,\dots,X_n)\)</span>, <span class="math inline">\(E(\overline{X_n^*})\)</span> and <span class="math inline">\(V(\overline{X_n^*})\)</span>.</p>
+<p>Find: <span class="math inline">\(\mathbb{E}(\overline{X_n^*}|X_1,\dots,X_n)\)</span>, <span class="math inline">\(\mathbb{V}(\overline{X_n^*}|X_1,\dots,X_n)\)</span>, <span class="math inline">\(\mathbb{E}(\overline{X_n^*})\)</span> and <span class="math inline">\(\mathbb{V}(\overline{X_n^*})\)</span>.</p>
+<hr />
+<p>Calculo:</p>
+<p>Sea <span class="math inline">\(\widehat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n (X_i - \overline{X})^2\)</span>.</p>
+<p><span class="math inline">\(B:=\)</span> El número de simulaciones que útiliza el algoritmo Bootstrap.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">1) <span class="math inline">\(\mathbb{E}(\overline{X_n^*}|X_1,\dots,X_n)\)</span></td>
+</tr>
+</tbody>
+</table>
+<span class="math display">\[\begin{aligned}
+\mathbb{E}(\overline{{X_n}^{*}}|X_1,\dots,X_n) &amp;= \mathbb{E}(\frac{\sum_{i=1}^B X_i^*}{B}|X_1,\dots,X_n) &amp;&amp; \mbox{(Definición)}\\
+&amp;= \frac{1}{B}\sum_{i=1}^B \mathbb{E}(X_i^*|X_1,\dots,X_n) &amp;&amp; \mbox{(Linealidad)}\\
+&amp;= \frac{1}{B}\sum_{i=1}^B \sum_{j=1}^{n}X_j \mathbb{P}(X_i^* = X_j) &amp;&amp; \mbox{(Esperanza de v.a. discreta)}\\
+&amp;= \frac{1}{B}\sum_{i=1}^B \frac{1}{n}\sum_{j=1}^{n}X_j &amp;&amp; \mbox{(Aleatorio simple)}\\
+&amp;= \frac{1}{B}\sum_{i=1}^B \overline{X}\\
+&amp;= \overline{X}
+\end{aligned}\]</span>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">2) <span class="math inline">\(\mathbb{V}(\overline{X_n^*}|X_1,\dots,X_n)\)</span></td>
+</tr>
+</tbody>
+</table>
+<span class="math display">\[\begin{aligned}
+\mathbb{v}(\overline{{X_n}^{*}}|X_1,\dots,X_n) &amp;= \mathbb{V}(\frac{\sum_{i=1}^B X_i^*}{B}|X_1,\dots,X_n) &amp;&amp; \mbox{(Definición)}\\
+&amp;= \frac{1}{B^2}\sum_{i=1}^B \mathbb{V}(X_i^*|X_1,\dots,X_n) &amp;&amp; \mbox{(Independencia)}\\
+&amp;= \frac{1}{B^2}\sum_{i=1}^B \sum_{j=1}^{n}(X_j - \overline{X})^2 \mathbb{P}(X_i^* = X_j) &amp;&amp; \mbox{(Varianza de v.a. discreta)}\\
+&amp;= \frac{1}{B^2}\sum_{i=1}^B \frac{1}{n}\sum_{j=1}^{n}(X_j - \overline{X})^2 &amp;&amp; \mbox{(Aleatorio simple)}\\
+&amp;= \frac{1}{B^2}\sum_{i=1}^B \widehat{\sigma}^2 \\
+&amp;= \frac{1}{B}\widehat{\sigma}^2.
+\end{aligned}\]</span>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">3) <span class="math inline">\(\mathbb{E}(\overline{X_n^*})\)</span></td>
+</tr>
+</tbody>
+</table>
+<span class="math display">\[\begin{aligned}
+\mathbb{E}(\overline{X_n^*}) &amp;= \mathbb{E}(\mathbb{E}(\overline{X_n^*}|X_1,\dots,X_n)) &amp;&amp; \mbox{(Esperanza iterada)}\\
+&amp;= \mathbb{E}(\overline{X}) &amp;&amp; \mbox{(1)}\\
+&amp;= \mathbb{E}(X)
+\end{aligned}\]</span>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">4) <span class="math inline">\(\mathbb{V}(\overline{X_n^*})\)</span></td>
+</tr>
+</tbody>
+</table>
+<span class="math display">\[\begin{aligned}
+\mathbb{V}(\overline{X_n^*}) &amp;= \mathbb{E}(\mathbb{V}(\overline{X_n^*}|X_1,\dots,X_n)) + \mathbb{V}(\mathbb{E}(\overline{X_n^*}|X_1,\dots,X_n)) &amp;&amp; \mbox{(Propiedad de la torre)}\\
+&amp;= \mathbb{E}(\frac{1}{B}\widehat{\sigma}^2) +  \mathbb{V}(\overline{X}) &amp;&amp; \mbox{(1 y 2)}\\
+&amp;= \frac{1}{B}\mathbb{E}(\widehat{\sigma}^2) + \frac{\sigma^2}{n} &amp;&amp; \mbox{(Var. de la media muestral)}\\
+&amp;= \frac{1}{B}\frac{n-1}{n}\sigma^2 + \frac{\sigma^2}{n} &amp;&amp; \mbox{(Estimador con sesgo)}\\
+\end{aligned}\]</span>
 
 
 

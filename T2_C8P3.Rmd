@@ -36,7 +36,7 @@ Conclusiones:
 
 3) Todos los intervalos contenen el valor real.
 
-Ahora evaluaremos la convergencia de los métodos sobre el número de simulaciones (B que corre de 2 a 10,000) con la misma semilla y por lo tanto, la misma muestra de tamaño 25.
+Ahora evaluaremos la convergencia de los métodos sobre el número de simulaciones (B que corre de 1 a 10,000) con la misma semilla y por lo tanto, la misma muestra de tamaño 25.
 
 A continuación se muestran tres gráficas que muestran la convergencia de los intervalos al $95\%$ variando el número de simulaciones utilizadas.
 

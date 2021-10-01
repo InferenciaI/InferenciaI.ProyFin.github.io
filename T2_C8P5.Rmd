@@ -4,5 +4,69 @@
 
 Let $X_1,\dots,X_n$ be distinct observations (no ties). Let $X_1^∗,\dots,X_n^∗$ denote a bootstrap sample and let $\overline{X_n^*} = n^{−1}\sum_{i=1}^nX_i^*$.
 
-Find: $E(\overline{X_n^*}|X_1,\dots,X_n)$, $V(\overline{X_n^*}|X_1,\dots,X_n)$, $E(\overline{X_n^*})$ and $V(\overline{X_n^*})$.
+Find: $\mathbb{E}(\overline{X_n^*}|X_1,\dots,X_n)$, $\mathbb{V}(\overline{X_n^*}|X_1,\dots,X_n)$, $\mathbb{E}(\overline{X_n^*})$ and $\mathbb{V}(\overline{X_n^*})$.
+
+
+---------------------------------------------------------------------------------------
+
+
+
+Calculo:
+
+
+Sea $\widehat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n (X_i - \overline{X})^2$.
+
+$B:=$ El número de simulaciones que útiliza el algoritmo Bootstrap.
+
+
+
+---------------------------------------------------------------------------------------
+1) $\mathbb{E}(\overline{X_n^*}|X_1,\dots,X_n)$
+---------------------------------------------------------------------------------------
+
+\begin{aligned}
+\mathbb{E}(\overline{{X_n}^{*}}|X_1,\dots,X_n) &= \mathbb{E}(\frac{\sum_{i=1}^B X_i^*}{B}|X_1,\dots,X_n) && \mbox{(Definición)}\\
+&= \frac{1}{B}\sum_{i=1}^B \mathbb{E}(X_i^*|X_1,\dots,X_n) && \mbox{(Linealidad)}\\
+&= \frac{1}{B}\sum_{i=1}^B \sum_{j=1}^{n}X_j \mathbb{P}(X_i^* = X_j) && \mbox{(Esperanza de v.a. discreta)}\\
+&= \frac{1}{B}\sum_{i=1}^B \frac{1}{n}\sum_{j=1}^{n}X_j && \mbox{(Aleatorio simple)}\\
+&= \frac{1}{B}\sum_{i=1}^B \overline{X}\\
+&= \overline{X}
+\end{aligned}
+
+---------------------------------------------------------------------------------------
+2) $\mathbb{V}(\overline{X_n^*}|X_1,\dots,X_n)$
+---------------------------------------------------------------------------------------
+
+\begin{aligned}
+\mathbb{v}(\overline{{X_n}^{*}}|X_1,\dots,X_n) &= \mathbb{V}(\frac{\sum_{i=1}^B X_i^*}{B}|X_1,\dots,X_n) && \mbox{(Definición)}\\
+&= \frac{1}{B^2}\sum_{i=1}^B \mathbb{V}(X_i^*|X_1,\dots,X_n) && \mbox{(Independencia)}\\
+&= \frac{1}{B^2}\sum_{i=1}^B \sum_{j=1}^{n}(X_j - \overline{X})^2 \mathbb{P}(X_i^* = X_j) && \mbox{(Varianza de v.a. discreta)}\\
+&= \frac{1}{B^2}\sum_{i=1}^B \frac{1}{n}\sum_{j=1}^{n}(X_j - \overline{X})^2 && \mbox{(Aleatorio simple)}\\
+&= \frac{1}{B^2}\sum_{i=1}^B \widehat{\sigma}^2 \\
+&= \frac{1}{B}\widehat{\sigma}^2.
+\end{aligned}
+
+---------------------------------------------------------------------------------------
+3) $\mathbb{E}(\overline{X_n^*})$
+---------------------------------------------------------------------------------------
+
+\begin{aligned}
+\mathbb{E}(\overline{X_n^*}) &= \mathbb{E}(\mathbb{E}(\overline{X_n^*}|X_1,\dots,X_n)) && \mbox{(Esperanza iterada)}\\
+&= \mathbb{E}(\overline{X}) && \mbox{(1)}\\
+&= \mathbb{E}(X)
+\end{aligned}
+
+
+---------------------------------------------------------------------------------------
+4) $\mathbb{V}(\overline{X_n^*})$
+---------------------------------------------------------------------------------------
+
+\begin{aligned}
+\mathbb{V}(\overline{X_n^*}) &= \mathbb{E}(\mathbb{V}(\overline{X_n^*}|X_1,\dots,X_n)) + \mathbb{V}(\mathbb{E}(\overline{X_n^*}|X_1,\dots,X_n)) && \mbox{(Propiedad de la torre)}\\
+&= \mathbb{E}(\frac{1}{B}\widehat{\sigma}^2) +  \mathbb{V}(\overline{X}) && \mbox{(1 y 2)}\\
+&= \frac{1}{B}\mathbb{E}(\widehat{\sigma}^2) + \frac{\sigma^2}{n} && \mbox{(Var. de la media muestral)}\\
+&= \frac{1}{B}\frac{n-1}{n}\sigma^2 + \frac{\sigma^2}{n} && \mbox{(Estimador con sesgo)}\\
+\end{aligned}
+
+
 
