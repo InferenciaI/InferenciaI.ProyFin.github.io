@@ -285,21 +285,21 @@ $(document).ready(function () {
 <ol start="3" style="list-style-type: decimal">
 <li>Find the plug-in estimator and estimated standard error for <span class="math inline">\(p − q\)</span>.</li>
 </ol>
-<p>Propondemos la siguiente transformación: <span class="math inline">\(W = X - Y\)</span>.</p>
+<p>Propondemos la siguiente transformación: <span class="math inline">\(W = \overline{X} - \overline{Y}\)</span>.</p>
 <p>Mostraremos que <span class="math inline">\(\mathbb{E}(W) = p - q\)</span>.</p>
-<p><span class="math display">\[\mathbb{E}(W) = \mathbb{E}(X) - \mathbb{E}(Y) = p - q.\]</span></p>
+<p><span class="math display">\[\mathbb{E}(W) = \mathbb{E}(\overline{X}) - \mathbb{E}(\overline{Y}) = p - q.\]</span></p>
 <p>Así el estimador plug-in es</p>
-<p><span class="math display">\[\widehat{p-q}_{plug-in} = \overline{W}\]</span></p>
+<p><span class="math display">\[\widehat{p-q}_{plug-in} = W\]</span></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Find an approximate 90 percent conﬁdence interval for <span class="math inline">\(p − q\)</span>.</li>
 </ol>
 <p>Usaremos una aproximación asintotica por el teorema del límite central.</p>
 <p>Primero necesitamos verificar que la varianza de <span class="math inline">\(Z\)</span> es finita.</p>
-<p><span class="math display">\[Var(W) = Var(X-Y) \overset{ind}{=} Var(X) + Var(Y) = p^2 + q^2.\]</span></p>
-<p>Así <span class="math inline">\(Var(\overline{W}) = \frac{p^2+q^2}{n}\)</span> por lo que <span class="math inline">\(W \overset{n \to \infty}{\sim} N(p-q,\frac{p^2+q^2}{n})\)</span>.</p>
+<p><span class="math display">\[Var(W) = Var(\overline{X}-\overline{Y}) \overset{ind}{=} Var(\overline{X}) + Var(\overline{Y}) = \frac{p(1-p)}{n} + \frac{q(1-q)}{n}.\]</span></p>
+<p>Así <span class="math inline">\(Var(W) = \frac{p(1-p)}{n} + \frac{q(1-q)}{n}\)</span> por lo que <span class="math inline">\(W \overset{n \to \infty}{\sim} N(p-q,\frac{p(1-p)}{n} + \frac{q(1-q)}{n})\)</span>.</p>
 <p>Entonces el intervalo de confianza al <span class="math inline">\(90\%\)</span> utilizando estimadores plug-in es de la forma:</p>
-<p><span class="math display">\[(\overline{X} - Z_{0.05}*\sqrt{\frac{S^2_W}{n}},  \overline{X} + Z_{0.95}*\sqrt{\frac{S^2_W}{n}})\]</span></p>
-<p>Donde <span class="math inline">\(S^2_W = \frac{1}{n}\sum_{i = 1}^n (W_i - \overline{W})^2\)</span>.</p>
+<p><span class="math display">\[(w - Z_{0.05}*\sqrt{\frac{S^2_W}{n}},  W + Z_{0.95}*\sqrt{\frac{S^2_W}{n}})\]</span></p>
+<p>Donde <span class="math inline">\(S^2_W = \overline{X}(1-\overline{X}) + \overline{Y}(1-\overline{Y})\)</span>.</p>
 
 
 

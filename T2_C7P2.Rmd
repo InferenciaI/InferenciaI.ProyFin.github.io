@@ -32,17 +32,17 @@ Donde $Z_{0.95} = -Z_{0.05} \thickapprox 1.644854$.
 3) Find the plug-in estimator and estimated standard error for $p − q$.
 
 
-Propondemos la siguiente transformación: $W = X - Y$.
+Propondemos la siguiente transformación: $W = \overline{X} - \overline{Y}$.
 
 
 Mostraremos que $\mathbb{E}(W) = p - q$. 
 
 
-\[\mathbb{E}(W) = \mathbb{E}(X) - \mathbb{E}(Y) = p - q.\]
+\[\mathbb{E}(W) = \mathbb{E}(\overline{X}) - \mathbb{E}(\overline{Y}) = p - q.\]
 
 Así el estimador plug-in es 
 
-\[\widehat{p-q}_{plug-in} = \overline{W}\]
+\[\widehat{p-q}_{plug-in} = W\]
 
 4) Find an approximate 90 percent conﬁdence interval for $p − q$.
 
@@ -50,16 +50,16 @@ Usaremos una aproximación asintotica por el teorema del límite central.
 
 Primero necesitamos verificar que la varianza de $Z$ es finita.
 
-\[Var(W) = Var(X-Y) \overset{ind}{=} Var(X) + Var(Y) = p^2 + q^2.\]
+\[Var(W) = Var(\overline{X}-\overline{Y}) \overset{ind}{=} Var(\overline{X}) + Var(\overline{Y}) = \frac{p(1-p)}{n} + \frac{q(1-q)}{n}.\]
 
 
-Así $Var(\overline{W}) = \frac{p^2+q^2}{n}$ por lo que $W \overset{n \to \infty}{\sim} N(p-q,\frac{p^2+q^2}{n})$.
+Así $Var(W) = \frac{p(1-p)}{n} + \frac{q(1-q)}{n}$ por lo que $W \overset{n \to \infty}{\sim} N(p-q,\frac{p(1-p)}{n} + \frac{q(1-q)}{n})$.
 
 Entonces el intervalo de confianza al $90\%$ utilizando estimadores plug-in es de la forma:
 
-\[(\overline{X} - Z_{0.05}*\sqrt{\frac{S^2_W}{n}},  \overline{X} + Z_{0.95}*\sqrt{\frac{S^2_W}{n}})\]
+\[(w - Z_{0.05}*\sqrt{\frac{S^2_W}{n}},  W + Z_{0.95}*\sqrt{\frac{S^2_W}{n}})\]
 
-Donde $S^2_W = \frac{1}{n}\sum_{i = 1}^n (W_i - \overline{W})^2$.
+Donde $S^2_W = \overline{X}(1-\overline{X}) + \overline{Y}(1-\overline{Y})$.
 
 
 
