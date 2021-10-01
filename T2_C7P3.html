@@ -272,17 +272,70 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li>Caso: <span class="math inline">\(N(0,1)\)</span>. Solución:</li>
 </ol>
-<div class="figure">
-<img src="DNormal01.png" alt="" />
-<p class="caption">Distribución de una Normal(0,1)</p>
-</div>
+<p>Se simuló 100 observaciones de una normal estándar de la semilla 1. En la imagen se muestran:</p>
+<ul>
+<li>Una linea dorada que reprenta la distribución estimada.</li>
+<li>Una linea negra que representa la distribución real.</li>
+<li>La linea roja y azul representan los límites superior e inferior (respectivamente) de la banda de confianza al <span class="math inline">\(95\%\)</span>.</li>
+</ul>
+<p><img src="Normal01.png" alt="Distribución de una Normal(0,1)" /> Se repitió lo anterior 1000 veces con las semillas 2 hasta 1001 y se alcanzo una cobertura de <span class="math inline">\(\frac{956}{1000} \approx 95.6\%\)</span>.</p>
+<p>Se muestra el código:</p>
+<pre class="r"><code>puntos = (1:1000-500)/500
+alfa = 0.05
+n = 100
+en = sqrt(log(2/alfa)/(2*n))
+
+contenciones = sapply(2:1001, function(i){
+  set.seed(i)
+  X = rnorm(n)
+  Fhat = ecdf(X)
+  puntos = max(abs(X) + 0.001)*puntos
+  UB = sapply(puntos, function(p){min(c(Fhat(p)+en,1))})
+  LB = sapply(puntos, function(p){max(c(Fhat(p)-en,0))})
+  Freal = pnorm(puntos)
+  limsup = (Freal&lt;=UB)
+  liminf = (LB &lt;= Freal)
+  all(apply(cbind(liminf,limsup), 1, all))
+})
+
+table(contenciones)</code></pre>
+<pre><code>## contenciones
+## FALSE  TRUE 
+##    44   956</code></pre>
+<hr />
 <ol start="2" style="list-style-type: decimal">
 <li>Caso <span class="math inline">\(Cauchy(0,1)\)</span>. Solución:</li>
 </ol>
-<div class="figure">
-<img src="Cauchy01.png" alt="" />
-<p class="caption">Distribución de una Cauchy(0,1)</p>
-</div>
+<p>Se simuló 100 observaciones de una normal estándar de la semilla 3. En la imagen se muestran:</p>
+<ul>
+<li>Una linea dorada que reprenta la distribución estimada.</li>
+<li>Una linea negra que representa la distribución real.</li>
+<li>La linea roja y azul representan los límites superior e inferior (respectivamente) de la banda de confianza al <span class="math inline">\(95\%\)</span>.</li>
+</ul>
+<p><img src="Cauchy01.png" alt="Distribución de una Cauchy(0,1)" /> Se repitió lo anterior 1000 veces con las semillas 2 hasta 1001 y se alcanzo una cobertura de <span class="math inline">\(\frac{978}{1000} \approx 97.8\%\)</span>.</p>
+<p>Se muestra el código:</p>
+<pre class="r"><code>puntos = (1:1000-500)/500
+alfa = 0.05
+n = 100
+en = sqrt(log(2/alfa)/(2*n))
+
+contenciones = sapply(4:1003, function(i){
+  set.seed(i)
+  X = rcauchy(n)
+  Fhat = ecdf(X)
+  puntos = max(abs(X) + 0.001)*puntos
+  UB = sapply(puntos, function(p){min(c(Fhat(p)+en,1))})
+  LB = sapply(puntos, function(p){max(c(Fhat(p)-en,0))})
+  Freal = pcauchy(puntos)
+  limsup = (Freal&lt;=UB)
+  liminf = (LB &lt;= Freal)
+  all(apply(cbind(liminf,limsup), 1, all))
+})
+
+table(contenciones)</code></pre>
+<pre><code>## contenciones
+## FALSE  TRUE 
+##    22   978</code></pre>
 
 
 

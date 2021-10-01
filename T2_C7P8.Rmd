@@ -7,3 +7,58 @@
 Get the data on eruption times and waiting times between eruptions of the Old Faithful geyser from the website. Estimate the mean waiting time and give a standard error for the estimate. Also, give a 90 percent conﬁdence interval for the mean waiting time. Now estimate the median waiting time. In the next chapter we will see how to get the standard error for the median.
 
 
+----------------------------------------------------------------------------------------
+1) Estimador de la media.
+
+````{r include = TRUE}
+library(MASS)
+hist(geyser$waiting,
+     ylab = "Frecuencia",
+     xlab = "Tiempo",
+     main = "Tiempos de espera entre erupciones")
+````
+````{r include = TRUE}
+table(geyser$waiting)
+````
+Como $n >30 $ usaremos los estimadores usuales.
+
+````{r include = TRUE}
+(media = mean(geyser$waiting))
+(varhat = var(geyser$waiting))
+````
+
+Así el estimador de la media es 72.31438 y el de la varianza 192.9411.
+
+----------------------------------------------------------------------------------------
+2) Intervalo de confianza de la media.
+
+Así construimos el intervalo de confianza al $95\%$.
+
+
+````{r include = TRUE}
+#Numero de observaciones
+(n = dim(geyser)[1])
+#alfa del nivel de confianza
+alfa = 0.10
+#intervalo al 95% de confianza
+c(media + qnorm(alfa/2)*sqrt(varhat)/n, media + qnorm(1-alfa/2)*sqrt(varhat)/n)
+````
+
+----------------------------------------------------------------------------------------
+3) Estimador de la mediana.
+
+La mediana estimada es 76.
+
+
+````{r include = TRUE}
+datosOrdenados = geyser$waiting[order(geyser$waiting)]
+if(n%%2 == 0){
+  m = n/2
+  mediana = mean(datosOrdenados[c(m,m+1)])
+}else{
+    m = (n-1)/2
+  mediana = datosOrdenados[m+1]
+}
+````
+
+

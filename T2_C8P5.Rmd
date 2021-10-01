@@ -68,5 +68,3 @@ $B:=$ El número de simulaciones que útiliza el algoritmo Bootstrap.
 &= \frac{1}{B}\frac{n-1}{n}\sigma^2 + \frac{\sigma^2}{n} && \mbox{(Estimador con sesgo)}\\
 \end{aligned}
 
-
-

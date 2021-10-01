@@ -269,6 +269,68 @@ $(document).ready(function () {
 
 <p>#(Computer Experiment.)</p>
 <p>Get the data on eruption times and waiting times between eruptions of the Old Faithful geyser from the website. Estimate the mean waiting time and give a standard error for the estimate. Also, give a 90 percent conﬁdence interval for the mean waiting time. Now estimate the median waiting time. In the next chapter we will see how to get the standard error for the median.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">1) Estimador de la media.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>r library(MASS) hist(geyser$waiting, ylab = "Frecuencia", xlab = "Tiempo", main = "Tiempos de espera entre erupciones")</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><img src="T2_C7P8_files/figure-html/unnamed-chunk-1-1.png" width="672" /></td>
+</tr>
+<tr class="even">
+<td align="left"><code>r table(geyser$waiting)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>## ##  43  45  47  48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  68 ##   1   1   2   5   7  12   5   5   7   9   3   2   9   5   3   6   3   5   1   1   7   2   3 ##  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91 ##   4   1   5   6   6   8   9   8  10  17  11  13  12   8   6  11   7   5  14   7   7   2   2 ##  92  93  94  96  98 108 ##   3   8   1   2   1   1</code> Como $n &gt;30 $ usaremos los estimadores usuales.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>r (media = mean(geyser$waiting))</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>## [1] 72.31438</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>r (varhat = var(geyser$waiting))</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>## [1] 192.9411</code></td>
+</tr>
+<tr class="even">
+<td align="left">Así el estimador de la media es 72.31438 y el de la varianza 192.9411.</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li>Intervalo de confianza de la media.</li>
+</ol>
+<p>Así construimos el intervalo de confianza al <span class="math inline">\(95\%\)</span>.</p>
+<pre class="r"><code>#Numero de observaciones
+(n = dim(geyser)[1])</code></pre>
+<pre><code>## [1] 299</code></pre>
+<pre class="r"><code>#alfa del nivel de confianza
+alfa = 0.10
+#intervalo al 95% de confianza
+c(media + qnorm(alfa/2)*sqrt(varhat)/n, media + qnorm(1-alfa/2)*sqrt(varhat)/n)</code></pre>
+<pre><code>## [1] 72.23797 72.39079</code></pre>
+<hr />
+<ol start="3" style="list-style-type: decimal">
+<li>Estimador de la mediana.</li>
+</ol>
+<p>La mediana estimada es 76.</p>
+<pre class="r"><code>datosOrdenados = geyser$waiting[order(geyser$waiting)]
+if(n%%2 == 0){
+  m = n/2
+  mediana = mean(datosOrdenados[c(m,m+1)])
+}else{
+    m = (n-1)/2
+  mediana = datosOrdenados[m+1]
+}</code></pre>
 
 
 
